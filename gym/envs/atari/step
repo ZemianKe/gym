@@ -108,7 +108,7 @@ class AtariEnv(gym.Env, utils.EzPickle):
 
         return [seed1, seed2]
 
-    def step(self, a):
+    def step(self, a):  #frameskip means how many frames will conduct the same action
         reward = 0.0
         action = self._action_set[a]
 
@@ -123,7 +123,7 @@ class AtariEnv(gym.Env, utils.EzPickle):
         return ob, reward, self.ale.game_over(), {"ale.lives": self.ale.lives()}
 
     def _get_image(self):
-        return self.ale.getScreenRGB2()
+        return self.ale.getScreenRGB2()   #what is the type of the return data?  
 
     def _get_ram(self):
         return to_ram(self.ale)
